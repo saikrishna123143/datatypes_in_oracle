@@ -1,0 +1,60 @@
+--example number datatype
+SQL> create table t6(h1 number(6));
+
+Table created.
+
+SQL> insert into t6 values(1000);
+
+1 row created.
+
+SQL> insert into t6 values(10.00);
+
+1 row created.
+
+SQL> select * from t6;
+
+        H1
+----------
+      1000
+        10
+
+SQL> insert into t6 values(10.00000);
+
+1 row created.
+
+SQL> craete table t7(h1 number(39));
+SP2-0734: unknown command beginning "craete tab..." - rest of line ignored.
+SQL> create table t7(h1 number(39));
+create table t7(h1 number(39))
+                          *
+ERROR at line 1:
+ORA-01727: numeric precision specifier is out of range (1 to 38)
+
+
+SQL> create table t7(h1 number(5,2)
+  2  );
+
+Table created.
+
+SQL> insert into t7 values(34.567);
+
+1 row created.
+
+SQL> select * from t7;
+
+        H1
+----------
+     34.57
+
+SQL> insert into t7 values(34.547);
+
+1 row created.
+
+SQL> select * from t7;
+
+        H1
+----------
+     34.57
+     34.55
+
+SQL> --this is how precision works
