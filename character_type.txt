@@ -1,0 +1,86 @@
+SQL> ---- examples of the char type
+SQL> create table t1(h1 char(5));
+
+Table created.
+
+SQL> insert into t1 values('ere');
+
+1 row created.
+
+SQL> ----insert 3 letters,remaining 2 filled with spaces thats why it is called as fixed length type.
+SQL> insert into t1 values('ererer');
+insert into t1 values('ererer')
+                      *
+ERROR at line 1:
+ORA-12899: value too large for column "C##SAIKRISHNA"."T1"."H1" (actual: 6,
+maximum: 5)
+
+
+SQL> ----if we assign more than 5 digits it gives error
+
+
+
+SQL> -----examples of the varchar2(n)
+SQL> create table t2(h1 varchar2(4))
+  2  ;
+
+Table created.
+
+SQL> insert into t2 values('hel');
+
+1 row created.
+
+SQL> select h1,length(h1) from t2;
+
+H1   LENGTH(H1)
+---- ----------
+hel           3
+
+SQL> --it occupies only 3digits,remaining as it is.thats why it is called varaible length.
+
+
+
+SQL> create table t3(h1 long);
+
+Table created.
+
+SQL> insert into t3 values('hello');
+
+1 row created.
+
+SQL> select h1,length(h1) from t3;
+select h1,length(h1) from t3
+                 *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected CHAR got LONG
+
+
+SQL> --we didnt use the built in function in the long type.
+SQL> create table t4(h1 long,h2 long);
+create table t4(h1 long,h2 long)
+                        *
+ERROR at line 1:
+ORA-01754: a table may contain only one column of type LONG
+
+
+SQL> -- only one long will be allowed.
+
+
+SQL> --examples of the clob
+SQL> create table t5(h1 clob);
+
+Table created.
+
+SQL> insert into t5 values('hello');
+
+1 row created.
+
+SQL> select * from t5;
+
+H1
+--------------------------------------------------------------------------------
+hello
+
+SQL> --clob is better than the long
+
+
