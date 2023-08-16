@@ -1,0 +1,176 @@
+SQL> --example of the date and timestamp
+SQL> create table t8(h1 date);
+
+Table created.
+
+SQL> insert into t8 values('16-aug-23');
+
+1 row created.
+
+SQL> select * from t8;
+
+H1
+---------
+16-AUG-23
+
+SQL> insert into t8 values(16-aug-23);
+insert into t8 values(16-aug-23)
+                         *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into t8 values(to_date('16-aug-23'));
+
+1 row created.
+
+SQL> select * from t8;
+
+H1
+---------
+16-AUG-23
+16-AUG-23
+
+SQL> insert into t8 values('16-aug-23 12:34:36 AM');
+insert into t8 values('16-aug-23 12:34:36 AM')
+                      *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string
+
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+16-AUG-23
+
+SQL> insert into t8 values('16-aug-23 12:34:36.0 AM');
+insert into t8 values('16-aug-23 12:34:36.0 AM')
+                      *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string
+
+
+SQL> insert into t8 values(sysdate);
+
+1 row created.
+
+SQL> select * from t8;
+
+H1
+---------
+16-AUG-23
+16-AUG-23
+16-AUG-23
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34:36 AM'));
+insert into t8 values(to_date('16-aug-23 12:34:36 AM'))
+                              *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34:36AM'));
+insert into t8 values(to_date('16-aug-23 12:34:36AM'))
+                              *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM'));
+insert into t8 values(to_date('16-aug-23 12:34 AM'))
+                              *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:sec pm));
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:sec pm'));
+insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:sec pm'))
+                                                   *
+ERROR at line 1:
+ORA-01821: date format not recognized
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:ss pm'));
+insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:ss pm'))
+                              *
+ERROR at line 1:
+ORA-01858: a non-numeric character was found where a numeric was expected
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:se pm'));
+insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi:se pm'))
+                                                   *
+ERROR at line 1:
+ORA-01821: date format not recognized
+
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi pm'));
+
+1 row created.
+
+SQL> select * from t8;
+
+H1
+---------
+16-AUG-23
+16-AUG-23
+16-AUG-23
+16-AUG-23
+
+SQL> select to_date(h1,'dd-mon-yy hh:mi pm') from t8;
+
+TO_DATE(H
+---------
+16-AUG-23
+16-AUG-23
+16-AUG-23
+16-AUG-23
+
+SQL> create table t9(h1 timestamp);
+
+Table created.
+
+SQL> insert into t8 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi pm'));
+
+1 row created.
+
+SQL> insert into t9 values(to_date('16-aug-23 12:34 AM','dd-mon-yy hh:mi pm'));
+
+1 row created.
+
+SQL> select * from t9;
+
+H1
+---------------------------------------------------------------------------
+16-AUG-23 12.34.00.000000 AM
+
+SQL> insert into t9 values(to_date('16-aug-23'));
+
+1 row created.
+
+SQL> select * from t9;
+
+H1
+---------------------------------------------------------------------------
+16-AUG-23 12.34.00.000000 AM
+16-AUG-23 12.00.00.000000 AM
+
+SQL> insert into t9 values(systimestamp);
+
+1 row created.
+
+SQL> select * from t9;
+
+H1
+---------------------------------------------------------------------------
+16-AUG-23 12.34.00.000000 AM
+16-AUG-23 12.00.00.000000 AM
+16-AUG-23 11.29.19.416000 PM
+
+SQL>
