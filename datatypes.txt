@@ -1,0 +1,117 @@
+DATATYPES IN ORACLE:
+
+Datatype tells,How much memory has to be allocated.
+               which type should be accepted.
+               valid range.
+
+Types of oracle:
+
+    1)Character related
+        1.1 CHAR(N)
+        1.2 VARCHAR2(N)
+        1.3 LONG
+        1.4 CLOB
+        1.5 NCHAR(N)
+        1.6 NVARCHAR(N)
+        1.7 NCLOB
+    2)Number related
+        2.1 NUMBER(P)
+        2.2 NUMBER(P,S)
+    3)Datatype related
+        3.1 DATE
+        3.2 TIMESTAMP
+    4)Binary related
+        4.1 BFILE
+        4.2 BLOB
+
+1)CHARACTER RELATED:
+   
+        1.1 CHAR(N)
+
+           * N is max no of characters accepted.
+           * it is used to hold a set of characters.
+           * it is fixed length data type.
+                =>after assigning the characters,remaining filled with the spaces.
+           * max ->2000bytes means 2000chars can be stored
+           * default size 1
+
+        1.2 VARCHAR2(N)
+
+           * N is max no of characters accepted.
+           * it is used to hold a set of characters.
+           * it is variable length data type.
+                    =>after assigning the characters,remaining not filled.
+      
+           * max ->4000bytes means 4000chars can be stored
+       
+           * no default value.
+
+        1.3 LONG
+           
+            * More than 4000 chars,we use LONG.
+            * Max size :2GB
+            * In one table,we can
+               ->we can only create one table as long type.
+            * We didn't use built in functions on long type.
+    
+        1.4 CLOB
+     
+            * Character large object.
+            * Max size :4GB
+            * no conditions to be follow as like LONG.
+            * It is better than the LONG.
+
+        national character related:
+           
+            NCHAR,NVARCHAR,NCLOB:
+                  
+                  * These are following unicode.normal datatypes following ascii code.
+                  * here we can store other language characters also.
+                        ascii-1byte for one char.
+                        unicode-2bytes for one char.
+                  * NCHAR => 2000byptes=> 1000chars
+                  * NVARCHAR =>4000bytes =>2000chars
+                  * NCLOB => 4GB
+
+2)NUMBER RELATED DATATYPE:
+ 
+         2.1 NUMBER(P):
+                 * P stands for precision.(max no of digits)
+                 * precision max size(1 to 38)
+                 * default value 38
+         2.2 NUMBER(p,s):
+                 * P stands for precision.
+                 * S stands for scale.
+                 example for understanding:
+                          if we want store 
+                                  NUMBER(5,2)
+                                          123.67892345  => 123.68  STORED
+                                          123.67492345  => 123.66  STORE
+                
+
+          
+3)DATE & TIME RELATED DATATYPES:
+         3.1  DATE
+
+              * It is used to hold date values.
+              * It is fixed length datatype.
+              * Date order 
+                  day:month:year:hours:minutes:seconds:AM/PM;
+              *default time:
+                  12:00:00 AM
+              *size: 7 bytes
+
+         3.2  TIMESTAMP:
+              
+             * It is extension of date type.
+             * It can also hold fractional seconds
+             * Fixed length datatype.
+             * memory:11bytes
+
+4)binary related:
+       BFILE:
+       BLOB:
+       
+       discuss later.
+
+
