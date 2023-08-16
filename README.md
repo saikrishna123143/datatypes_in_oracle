@@ -1,1 +1,1 @@
-# datatypes_in_oracle
+#datatypes.txt file having description
